@@ -35,25 +35,25 @@ const App = () => {
 		});
 	};
 
-  const handleDeletion = (id) => {
-    setTodos((currentTodos) => {
-      return currentTodos.filter((todo) => {
-        return todo.id !== id;
-      })
-    })
-  }
+	const handleDeletion = (id) => {
+		setTodos((currentTodos) => {
+			return currentTodos.filter((todo) => {
+				return todo.id !== id;
+			});
+		});
+	};
 
 	return (
 		<>
-			<div className="header">
-				<h1>TDL v1</h1>
+			<div className="navbar">
+				<p className="navbar__name">TDL v1</p>
 				<ul>
 					<li>About</li>
 				</ul>
 			</div>
-			<div className="new-item-div">
-				<form onSubmit={handleSubmit}>
-					<label>Add a new TDL</label>
+			<form onSubmit={handleSubmit} className="new-item-form">
+				<label>Add a new TDL</label>
+				<div className="new-item-form__input-div">
 					<input
 						type="text"
 						value={newItem}
@@ -62,30 +62,44 @@ const App = () => {
 						}}
 					/>
 					<button type="submit">Add</button>
-				</form>
-			</div>
+				</div>
+			</form>
 			<div className="lists-div">
 				<div className="lists-div__pending-list-div">
 					<h2>Pending TDL</h2>
-					<ul>
+					<ul className="lists-div__pending-list-div__ul">
+						{todos.filter((todo) => {
+							return todo.completed === false;
+						}).length === 0 && "No pending tasks yet"}
 						{todos
 							.filter((todo) => {
 								return todo.completed === false;
 							})
 							.map((todo) => {
 								return (
-									<li key={todo.id}>
-										<p>{todo.title}</p>
-										<button
-											onClick={() =>
-												handleCompletion(
-													todo.id,
-													todo.completed
-												)
-											}>
-											Done
-										</button>
-										<button>Remove</button>
+									<li
+										key={todo.id}
+										className="lists-div__pending-list-div__ul__li">
+										<p className="lists-div__pending-list-div__ul__li__title">
+											{todo.title}
+										</p>
+										<div className="lists-div__pending-list-div__ul__li__buttons-div">
+											<button
+												onClick={() =>
+													handleCompletion(
+														todo.id,
+														todo.completed
+													)
+												}>
+												Done
+											</button>
+											<button
+												onClick={() =>
+													handleDeletion(todo.id)
+												}>
+												Remove
+											</button>
+										</div>
 									</li>
 								);
 							})}
@@ -93,21 +107,38 @@ const App = () => {
 				</div>
 				<div className="lists-div__completed-list-div">
 					<h2>Completed TDL</h2>
-					<ul>
+					<ul className="lists-div__completed-list-div__ul">
+          {todos.filter((todo) => {
+							return todo.completed === true;
+						}).length === 0 && "No completed tasks yet"}
 						{todos
 							.filter((todo) => {
 								return todo.completed === true;
 							})
 							.map((todo) => {
 								return (
-									<li key={todo.id}>
+									<li
+										key={todo.id}
+										className="lists-div__completed-list-div__ul__li">
 										<p>{todo.title}</p>
-										<button onClick={() => handleDeletion(todo.id)}>Remove</button>
+										<button
+											onClick={() =>
+												handleDeletion(todo.id)
+											}>
+											Remove
+										</button>
 									</li>
 								);
 							})}
 					</ul>
 				</div>
+			</div>
+			<div className="attribution">
+				Coded by{" "}
+				<a href="https://www.github.com/danheecho1" target="_blank">
+					Danny Cho
+				</a>{" "}
+				on 06/08/23.
 			</div>
 		</>
 	);
