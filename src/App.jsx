@@ -35,6 +35,14 @@ const App = () => {
 		});
 	};
 
+  const handleDeletion = (id) => {
+    setTodos((currentTodos) => {
+      return currentTodos.filter((todo) => {
+        return todo.id !== id;
+      })
+    })
+  }
+
 	return (
 		<>
 			<div className="header">
@@ -94,7 +102,7 @@ const App = () => {
 								return (
 									<li key={todo.id}>
 										<p>{todo.title}</p>
-										<button>Archive</button>
+										<button onClick={() => handleDeletion(todo.id)}>Remove</button>
 									</li>
 								);
 							})}
@@ -106,10 +114,3 @@ const App = () => {
 };
 
 export default App;
-
-/* const todoItem = {
-  id: "weird string"  crypto.randomUUID()
-  title: "title", 
-  completed: "false",
-}
-*/
