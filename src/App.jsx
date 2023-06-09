@@ -23,6 +23,18 @@ const App = () => {
 		setNewItem("");
 	};
 
+	const handleCompletion = (id) => {
+		setTodos((currentTodos) => {
+			return currentTodos.map((todo) => {
+				if (todo.id === id) {
+					return { ...todo, completed: true };
+				} else {
+					return todo;
+				}
+			});
+		});
+	};
+
 	return (
 		<>
 			<div className="header">
@@ -56,7 +68,15 @@ const App = () => {
 								return (
 									<li key={todo.id}>
 										<p>{todo.title}</p>
-										<button>Done</button>
+										<button
+											onClick={() =>
+												handleCompletion(
+													todo.id,
+													todo.completed
+												)
+											}>
+											Done
+										</button>
 										<button>Remove</button>
 									</li>
 								);
@@ -66,22 +86,18 @@ const App = () => {
 				<div className="lists-div__completed-list-div">
 					<h2>Completed TDL</h2>
 					<ul>
-						<li>
-							<p>Test TD 1</p>
-							<button>Archive</button>
-						</li>
-						<li>
-							<p>Test TD 1</p>
-							<button>Archive</button>
-						</li>
-						<li>
-							<p>Test TD 1</p>
-							<button>Archive</button>
-						</li>
-						<li>
-							<p>Test TD 1</p>
-							<button>Archive</button>
-						</li>
+						{todos
+							.filter((todo) => {
+								return todo.completed === true;
+							})
+							.map((todo) => {
+								return (
+									<li key={todo.id}>
+										<p>{todo.title}</p>
+										<button>Archive</button>
+									</li>
+								);
+							})}
 					</ul>
 				</div>
 			</div>
