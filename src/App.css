@@ -1,15 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
-    /* border: 1px solid green; */
 }
 
 ul {
     list-style: none;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    background-color: #5A5B5E;
+    color: lightgray;
+    cursor: pointer;
 }
 
 #root {
@@ -18,12 +25,6 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 5em;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
 }
 
 .navbar__name {
@@ -77,6 +78,11 @@ ul {
     margin-bottom: 1em;
 }
 
+.lists-div__pending-list-div__ul__li__title, 
+.lists-div__completed-list-div__ul__li__title {
+    width: 50%;
+}
+
 .lists-div__pending-list-div__ul__li__buttons-div {
     display: flex;
     gap: 1em;
@@ -90,4 +96,54 @@ ul {
 
 .attribution {
     text-align: center;
+}
+
+
+/* 375px */
+
+@media screen and (max-width: 1080px) {
+    :root {
+        font-size: 14px;
+    }
+
+    #root {
+        width: 375px;
+        padding: 0 1em;
+        gap: 2.5em;
+    }
+
+    .new-item-form {
+        margin-bottom: 1em;
+    }
+
+    .new-item-form label {
+        font-size: 1.75rem;
+    }
+
+    .new-item-form__input-div {
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .new-item-form__input-div input {
+        width: 100%;
+    }
+
+    .new-item-form__input-div button {
+        padding: 0.5em;
+    }
+
+    .lists-div__pending-list-div__ul__li__buttons-div {
+        gap: 0.5em;
+    }
+
+    .lists-div__pending-list-div__ul__li__buttons-div button {
+        font-size: 0.875rem;
+    }
+
+    .lists-div {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+    }
 }
