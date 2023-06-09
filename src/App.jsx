@@ -45,12 +45,7 @@ const App = () => {
 
 	return (
 		<>
-			<div className="navbar">
-				<p className="navbar__name">TDL v1</p>
-				<ul>
-					<li>About</li>
-				</ul>
-			</div>
+			<p className="navbar__name">TDL v1</p>
 			<form onSubmit={handleSubmit} className="new-item-form">
 				<label>Add a new TDL</label>
 				<div className="new-item-form__input-div">
@@ -108,7 +103,7 @@ const App = () => {
 				<div className="lists-div__completed-list-div">
 					<h2>Completed TDL</h2>
 					<ul className="lists-div__completed-list-div__ul">
-          {todos.filter((todo) => {
+						{todos.filter((todo) => {
 							return todo.completed === true;
 						}).length === 0 && "No completed tasks yet"}
 						{todos
@@ -120,7 +115,9 @@ const App = () => {
 									<li
 										key={todo.id}
 										className="lists-div__completed-list-div__ul__li">
-										<p>{todo.title}</p>
+										<p className="lists-div__completed-list-div__ul__li__title">
+											{todo.title}
+										</p>
 										<button
 											onClick={() =>
 												handleDeletion(todo.id)
