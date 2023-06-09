@@ -10,7 +10,7 @@ TDL is a simple to-do-list that allows users to add/remove tasks as well as indi
 
 ### Wireframe
 
-![Wireframe](prep/wireframe_excalidraw.png)
+![Wireframe](./prep/wireframe_excalidraw.png)
 
 ## Thoughts
 
